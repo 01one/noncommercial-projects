@@ -1,15 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>noncommercial projects</title>
+    <title>Noncommercial Projects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .icon {
+            margin-right: 10px;
+        }
+
+        .social-icons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            color: #555;
+            font-size: 24px;
+        }
+
+        .social-icons a:hover {
+            color: #007bff;
+        }
+
+        .social-text {
+            margin-top: 10px;
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 16px;
+            line-height: 16px;
+            color: rgba(12, 12, 12, 0.8);
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Current projects</h1>
-    <ul>
-        <li><a href="https://noncommercial.purnorup.com/programming/python/python-interpreter-matplotlib-numpy">Python Online Interpreter</a></li>
-        <li><a href="https://noncommercial.purnorup.com/programming/html/html-editor">Html Editor</a></li>
-    </ul>
+    <div class="container">
+        <ul>
+            <li>
+                <i class="fas fa-code icon"></i>
+                <a href="https://noncommercial.purnorup.com/programming/python/python-interpreter-matplotlib-numpy">Python
+                    Online Interpreter</a>
+            </li>
+            <li>
+                <i class="fab fa-html5 icon"></i>
+                <a href="https://noncommercial.purnorup.com/programming/html/html-editor">HTML Editor</a>
+            </li>
+        </ul>
+        <div class="social-icons">
+            <a href="https://github.com/01one/noncommercial-projects" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/mashiurrahman99/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://medium.com/@01one" target="_blank"><i class="fab fa-medium"></i></a>
+            <a href="https://programmerbee.com/" target="_blank"><i class="fas fa-align-left"></i></a>
+            <div class="social-text"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+        function createParticle(char) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.innerText = char;
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = (window.innerHeight - 100) + 'px';
+            particle.style.opacity = 0;
+            document.body.appendChild(particle);
+            return particle;
+        }
+
+        function animateParticles() {
+            document.body.style.overflow = 'hidden';
+
+            const TextEffect = `Current Projects`;
+            const particles = [];
+            let currentIndex = 0;
+
+            const charWidth = 20;
+            const textEffectWidth = charWidth * TextEffect.length;
+            const startX = (window.innerWidth - textEffectWidth) / 2;
+
+
+            const textEffectPositions = [];
+            for (let i = 0; i < TextEffect.length; i++) {
+                textEffectPositions.push({ left: startX + i * charWidth, top: 50 });
+            }
+
+            for (let i = 0; i < TextEffect.length; i++) {
+                const char = TextEffect[i];
+                const particle = createParticle(char);
+                particles.push(particle);
+            }
+
+            const animationInterval = setInterval(() => {
+                if (currentIndex >= TextEffect.length) {
+                    clearInterval(animationInterval);
+                    document.body.style.overflow = 'auto';
+                    return;
+                }
+
+                const position = textEffectPositions[currentIndex];
+                gsap.to(particles[currentIndex], {
+                    duration: 1,
+                    left: position.left,
+                    top: position.top,
+                    opacity: 1, 
+                    delay: currentIndex * 0.1
+                });
+
+                currentIndex++;
+            }, 50);
+        }
+
+        window.onload = function () {
+            animateParticles();
+        };
+    </script>
 </body>
+
 </html>
