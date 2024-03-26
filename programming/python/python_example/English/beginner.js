@@ -179,9 +179,9 @@ print(word['Aurora'])`,
 
 
   "Arithmetic Expression Evaluation": `a= x**2+5*x+
-2*y+30
 x=5
 y=7
+a= str(x**2+5*x+2*y+30)
 answer=eval(a)
 print(answer)`,
 
