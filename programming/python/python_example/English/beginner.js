@@ -142,8 +142,8 @@ z=x%y   #remainder
 print(z)`,
 
   "Printing Patterns": `print('*'*10)
-print('*'+' '*8+'*')
-print('*'+' '*8+'*')
+print('*'+'*')
+print('*'+'*')
 print('*'*10)`,
 
   "Print Statement": `print("Hello")`,
@@ -178,8 +178,7 @@ print(word['Aurora'])`,
 
 
 
-  "Arithmetic Expression Evaluation": `a= x**2+5*x+
-x=5
+  "Arithmetic Expression Evaluation": `x=5
 y=7
 a= str(x**2+5*x+2*y+30)
 answer=eval(a)
