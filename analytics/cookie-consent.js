@@ -63,20 +63,30 @@ $(document).ready(function () {
 });
 
 
+
+
 function deleteWebsiteCookies() {
     // Check if there are cookies present
     if (document.cookie && document.cookie !== '') {
+        // Get the current path
+        const path = window.location.pathname;
+
         // Get all cookies associated with the website
         const cookies = document.cookie.split(';');
+        
+        // Iterate over each cookie
         for (let i = 0; i < cookies.length; i++) {
             const cookie = cookies[i].trim();
+
             // Check if the cookie is not the one to be preserved
             if (!cookie.startsWith("cf_clearance")) {
                 const cookieName = cookie.split('=')[0];
-                // Delete the cookie
-                document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+                // Delete the cookie with the current path
+                document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=' + path;
             }
         }
     }
 }
+
+
 
