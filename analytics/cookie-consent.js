@@ -1,11 +1,15 @@
 function loadAnalyticsScript() {
+   
     if (localStorage.getItem('analyticsConsent') === 'accepted') {
 var clarityScript = document.createElement('script');
+///////////////////////////////////////////////////
+//// //this is microsoft analytics (clarity) script for noncommercial.purnorup.com
+// Do not include this in your project
 clarityScript.type = 'text/javascript';
 clarityScript.innerHTML = '(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "m1ep0tgddo");';
 document.head.appendChild(clarityScript);
-       // analyticsScript.async = true;
-        
+//////////////////////////////////////////////////
+   
     }
 }
 
