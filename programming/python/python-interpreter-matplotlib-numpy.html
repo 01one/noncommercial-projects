@@ -21,8 +21,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/python/python.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
-
-
+  
 
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
@@ -32,6 +31,7 @@
   <script src="python_example/English/beginner.js"></script>
   <script src="python_example/English/intermediate.js"></script>
   <script src="python_example/English/advanced.js"></script>
+  <link rel="stylesheet" href="/analytics/cookie-consent.css">
 
   <style>
 body {
@@ -232,6 +232,32 @@ plt.close()
     </div>
   </div>
 
+  <div class="ui small modal cookie-consent-modal">
+    <div class="cookie-consent-header"><i class="shield alternate icon"></i>Cookies</div>
+    <div class="cookie-consent-content">
+      <p>Welcome to our platform. To offer you the best experience  we and our partners use cookies. These cookies are necessary for the functioning of the website and help us understand and improve how you interact with our site.</p>
+      <p>Please select the types of cookies you accept:</p>
+      <form id="cookieForm">
+        <div class="ui checkbox cookie-consent-checkbox">
+          <input type="checkbox" name="essential" id="essential" checked disabled>
+          <label for="essential">Essential Cookies (Required for website functionality)</label>
+        </div>
+        <div class="ui checkbox cookie-consent-checkbox">
+          <input type="checkbox" name="analytics" id="analytics" >
+          <label for="analytics">Analytics Cookies (Help us analyze and improve our website)</label>
+        </div>
+      </form>
+    </div>
+    <div class="ui grid">
+	  <div class="ui positive button cookie-consent-accept-all-button" id="acceptAllButton">Accept All</div>
+      <div class="ui positive button cookie-consent-accept-button" id="acceptButton">Accept Selected</div>
+
+      <div class="ui positive button" data-tooltip="Declining all non-essential cookies">Decline All Except Essential
+      </div>
+
+
+    </div>
+  </div>
 
 
 
@@ -370,6 +396,7 @@ plt.close()
 
   });
 </script>
+<script src="/analytics/cookie-consent.js"></script>
 
 </body>
 
