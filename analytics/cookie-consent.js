@@ -69,7 +69,7 @@ function deleteWebsiteCookies() {
     // Check if there are cookies present
     if (document.cookie && document.cookie !== '') {
         // Get the current path
-        const path = window.location.pathname;
+        const path = '/';
 
         // Get all cookies associated with the website
         const cookies = document.cookie.split(';');
