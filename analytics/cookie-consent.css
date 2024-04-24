@@ -1,0 +1,77 @@
+.cookie-consent-modal {
+    background-color: #ffffff;
+    color: rgb(26, 22, 22);
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    max-width: 500px;
+    margin: 100px auto;
+    z-index:10000;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .cookie-consent-modal .cookie-consent-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+
+  .cookie-consent-modal .cookie-consent-content p {
+    margin-bottom: 20px;
+    color: #000000;
+    line-height: 1.5;
+  }
+
+  .cookie-consent-modal .cookie-consent-checkbox {
+    margin-bottom: 15px;
+  }
+
+  .cookie-consent-modal .cookie-consent-checkbox label {
+    color: #111010;
+  }
+
+  .cookie-consent-modal .cookie-consent-actions {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .cookie-consent-modal .cookie-consent-button {
+    margin-left: 10px;
+  }
+
+  .cookie-consent-decline-button {
+    padding: 5px;
+    font-size: 12px;
+  }
+
+  .cookie-consent-accept-button {
+    padding: 5px;
+    font-size: 12px;
+  }
+
+  .cookie-consent-ui-modal {
+    max-width: 80% !important;
+    background-color: rgb(231, 223, 223);
+    position: fixed;
+    bottom: 20px;
+    left:20px;
+  }
+
+  .cookie-consent-ui-modal > .cookie-consent-content {
+    background-color: rgb(236, 231, 231);
+  }
+
+  .cookie-consent-ui-checkbox input[disabled] ~ label {
+    color: rgb(22, 22, 22);
+  }
+
+
+  .cookie-consent-ui-positive-button {
+    background-color: #433636;
+    margin-bottom:5px;
+  }
+  .cookie-consent-ui-dimmer {
+    background-color: #0000002e;
+  }
