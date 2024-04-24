@@ -19,7 +19,7 @@ $(document).ready(function () {
         localStorage.removeItem('cookieConsentTimestamp');
 
         // Delete cookies associated with the website
-        deleteWebsiteCookies();
+        //deleteWebsiteCookies();
     }
 
     if (localStorage.getItem('cookieConsent') === 'accepted') {
@@ -36,7 +36,7 @@ $(document).ready(function () {
         localStorage.setItem('analyticsConsent', $('#analytics').prop('checked') ? 'accepted' : 'rejected');
         localStorage.setItem('cookieConsentTimestamp', Date.now());
         $('.cookie-consent-modal').modal('hide');
-        deleteWebsiteCookies();
+        //deleteWebsiteCookies();
         loadAnalyticsScript();
     });
 
@@ -47,7 +47,7 @@ $(document).ready(function () {
         localStorage.setItem('analyticsConsent', 'accepted');
         localStorage.setItem('cookieConsentTimestamp', Date.now()); // Set current timestamp
         $('.cookie-consent-modal').modal('hide');
-        deleteWebsiteCookies();
+        //deleteWebsiteCookies();
         loadAnalyticsScript();
     });
 
@@ -58,13 +58,14 @@ $(document).ready(function () {
         localStorage.setItem('analyticsConsent', 'rejected');
         localStorage.setItem('cookieConsentTimestamp', Date.now()); // Set current timestamp
         $('.cookie-consent-modal').modal('hide');
-        deleteWebsiteCookies();
+        //deleteWebsiteCookies();
     });
 });
 
 
 
-
+/*
+//server integration needed for deleing secure cookies
 function deleteWebsiteCookies() {
     // Check if there are cookies present
     if (document.cookie && document.cookie !== '') {
@@ -88,5 +89,5 @@ function deleteWebsiteCookies() {
     }
 }
 
-
+*/
 
