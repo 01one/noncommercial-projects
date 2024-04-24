@@ -12,7 +12,7 @@ document.head.appendChild(clarityScript);
 $(document).ready(function () {
     // Check if the stored data has expired
     const consentTimestamp = localStorage.getItem('cookieConsentTimestamp');
-    if (consentTimestamp && (Date.now() - consentTimestamp > 30 * 24 * 60 * 60 * 1000)) {
+    if (consentTimestamp && (Date.now() - consentTimestamp > 366 * 24 * 60 * 60 * 1000)) {
         // If the data has expired, remove it from local storage
         localStorage.removeItem('cookieConsent');
         localStorage.removeItem('analyticsConsent');
