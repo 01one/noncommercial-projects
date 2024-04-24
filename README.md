@@ -1,1 +1,1 @@
-Source code of noncommercial.purnorup.com website
+Source code of https://noncommercial.purnorup.com/
