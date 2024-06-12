@@ -162,7 +162,7 @@ x.insert(3,20)
 print(x)    #[2,2,3,20,4,7] #insert item 20 at index 3`,
 
   "Looping Example": `for i in range(100):
-  print(i,end=' ')`,
+  print(i)`,
 
   "Dictionary Example": `word={"Aurora":"A natural electrical phenomenon characterized by the appearance of streamers of reddish or greenish light in the sky, usually near the northern or southern magnetic pole.",
 "Bubbly":"(especially of a woman or girl) Attractively full of energy and enthusiasm",
