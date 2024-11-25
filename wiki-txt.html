@@ -113,25 +113,29 @@
     </div>
   </div>
   <script>
-    // Modernized JavaScript
     const WIKIPEDIA_API_URL = "https://en.wikipedia.org/w/api.php";
 
     document.getElementById("downloadBtn").addEventListener("click", async () => {
       const urlInput = document.getElementById("wikiUrl").value.trim();
       const logArea = document.getElementById("logArea");
       const loader = document.getElementById("loader");
-      logArea.value = ""; // Clear logs
+      logArea.value = "";
 
+      
       if (!urlInput.startsWith("https://en.wikipedia.org/wiki/")) {
         logArea.value = "Invalid URL. Please enter a valid Wikipedia URL.\n";
         return;
       }
 
+
+      
       const title = urlInput.split("/").pop();
       logArea.value += `Fetching article: ${title}\n`;
 
       loader.style.display = "block"; // Show loader
 
+
+      
       try {
         const response = await fetch(
           `${WIKIPEDIA_API_URL}?action=query&format=json&prop=extracts&titles=${title}&explaintext=true&origin=*`
@@ -140,11 +144,11 @@
         const pageId = Object.keys(data.query.pages)[0];
         const content = data.query.pages[pageId]?.extract;
 
+        
         if (!content) {
           throw new Error("No content found for the specified title.");
         }
-
-        // Save as a text file
+        
         const blob = new Blob([content], { type: "text/plain" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
@@ -154,8 +158,9 @@
         logArea.value += `Article downloaded successfully as ${title}.txt\n`;
       } catch (error) {
         logArea.value += `Error: ${error.message}\n`;
+        
       } finally {
-        loader.style.display = "none"; // Hide loader
+        loader.style.display = "none";
       }
     });
   </script>
