@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>wikitxtSave Wikipedia Article in Plain Text Format</title>
+  <style>
+    body {
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      color: #333;
+      padding: 20px 30px;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #007BFF;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #007BFF;
+    }
+
+    button {
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(135deg, #007BFF, #0056b3);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #0056b3, #003f7f);
+    }
+
+    .log {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 10px;
+      resize: none;
+      color: #333;
+    }
+
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 4px solid #007BFF;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+      display: none;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Save Wikipedia Article In Plain Text Format</h1>
+    <div class="input-group">
+      <input type="text" id="wikiUrl" placeholder="Enter Wikipedia article URL...">
+      <button id="downloadBtn">Download</button>
+    </div>
+    <div id="loader" class="loader"></div>
+    <div class="log">
+      <h3>Logs</h3>
+      <textarea id="logArea" readonly></textarea>
+    </div>
+  </div>
+  <script>
+    // Modernized JavaScript
+    const WIKIPEDIA_API_URL = "https://en.wikipedia.org/w/api.php";
+
+    document.getElementById("downloadBtn").addEventListener("click", async () => {
+      const urlInput = document.getElementById("wikiUrl").value.trim();
+      const logArea = document.getElementById("logArea");
+      const loader = document.getElementById("loader");
+      logArea.value = ""; // Clear logs
+
+      if (!urlInput.startsWith("https://en.wikipedia.org/wiki/")) {
+        logArea.value = "Invalid URL. Please enter a valid Wikipedia URL.\n";
+        return;
+      }
+
+      const title = urlInput.split("/").pop();
+      logArea.value += `Fetching article: ${title}\n`;
+
+      loader.style.display = "block"; // Show loader
+
+      try {
+        const response = await fetch(
+          `${WIKIPEDIA_API_URL}?action=query&format=json&prop=extracts&titles=${title}&explaintext=true&origin=*`
+        );
+        const data = await response.json();
+        const pageId = Object.keys(data.query.pages)[0];
+        const content = data.query.pages[pageId]?.extract;
+
+        if (!content) {
+          throw new Error("No content found for the specified title.");
+        }
+
+        // Save as a text file
+        const blob = new Blob([content], { type: "text/plain" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `${title}.txt`;
+        link.click();
+
+        logArea.value += `Article downloaded successfully as ${title}.txt\n`;
+      } catch (error) {
+        logArea.value += `Error: ${error.message}\n`;
+      } finally {
+        loader.style.display = "none"; // Hide loader
+      }
+    });
+  </script>
+</body>
+</html>
